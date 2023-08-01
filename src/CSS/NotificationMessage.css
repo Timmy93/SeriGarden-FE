@@ -1,0 +1,27 @@
+.notification {
+    position: absolute;
+    top: 0;
+    margin: 35px auto;
+    z-index: 999;
+    width: 100%;
+    text-align: center;
+}
+
+.notification_msg {
+    display: inline-block;
+    margin: 0 auto;
+    background: white;
+    border: 2px solid black;
+    border-radius: 25px;
+    padding: 8px;
+    box-shadow: 2px 2px 5px #ffffff;
+}
+
+.error_notif {
+    border-color: red;
+    color: red;
+}
+
+.notification_msg > button {
+    margin: 0 5px;
+}

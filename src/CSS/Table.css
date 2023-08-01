@@ -1,0 +1,33 @@
+.button_groups {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.nothing_found {
+    text-align: center;
+    margin: 35px 25%;
+    display: block;
+    border: 0 solid #e9e9ed;
+    border-radius: 40px;
+    padding: 20px;
+}
+
+.nothing_found > * {
+    font-size: 28px;
+    color: #545455;
+    margin: auto auto;
+    width: 100%;
+    display: block;
+}
+
+.nothing_found > img {
+    height: 150px;
+    margin: 50px auto;
+    display: block;
+}
+
+.nothing_suggest {
+    font-size: 22px;
+    margin: 10px auto;
+}

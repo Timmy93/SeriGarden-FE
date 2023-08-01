@@ -1,0 +1,16 @@
+.title_bar_div {
+    height: 10%;
+    display: flex;
+    background: #57aa60;
+}
+
+.title_icon {
+    height: 70px;
+    padding: 10px 40px;
+}
+
+.main_title {
+    font-size: 32px;
+    color: #ddefff;
+    align-self: center;
+}
