@@ -64,7 +64,7 @@ export function Table() {
         const r_promise = getPlants();
         let tempPlant = window.localStorage.getItem('plants');
         if (tempPlant) {
-            //Showing temporarly stored reports - if present
+            //Showing temporarily stored reports - if present
             setPlants(JSON.parse(tempPlant));
         } else {
             console.log("No local storage");
@@ -105,7 +105,9 @@ export function Table() {
                 setInfo={setPlants}
                 setNotification={setNotificationMessageInfo}
             />
-            {lines}
+            <div className={"tile_container"}>
+                {lines}
+            </div>
         </div>
     );
 }
