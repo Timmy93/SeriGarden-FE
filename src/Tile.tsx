@@ -74,6 +74,8 @@ const plant_icon_association = [
     {name: "timo", icon: "thyme.svg"},
     {name: "fragola", icon: "strawberry.svg"},
     {name: "lampone", icon: "raspberry.svg"},
+    {name: "salvia", icon: "salvia.svg"},
+    {name: "basilico", icon: "basilico.svg"},
 ]
 
 const status_icon_association = [
