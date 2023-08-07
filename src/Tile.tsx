@@ -60,7 +60,14 @@ export const Tile: React.FC<TileProps> = ({ info }) => {
             let selectedWaterQuantity = selector.value;
             requestWatering(selectedWaterQuantity)
                 .then((result) => {
-                console.log(result)
+                    console.log(result)
+                    if (result.success) {
+                        updateConfirmationStatus({})
+                    } else if (result && result.hasOwnProperty('message')) {
+                        console.log("Cannot water this plant: " + result.message)
+                    } else {
+                        console.log("Cannot water this plant: " + result)
+                    }
             })
         } else {
             console.error("Cannot find the water selector");
