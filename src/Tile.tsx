@@ -1,5 +1,7 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Plant } from './Table';
+import {WateringPopup, WateringPopupStatus} from "./WateringPopup";
+import {be_url} from "./index";
 
 type TileProps = {
     info: Plant;
@@ -36,7 +38,58 @@ type status = {
 }
 
 export const Tile: React.FC<TileProps> = ({ info }) => {
+    //The confirmation popup status
+    const [confirmationStatus, updateConfirmationStatus] = useState<WateringPopupStatus>({})
+
     let status = analyseStatus(info.plant_hum, info.detection_ts)
+
+    function handleOpenPopup() {
+        updateConfirmationStatus({
+            'msg': "Irrigazione",
+            'img': "watering_can.svg",
+            'buttons': [
+                {'title': "OK", 'action': confirmIrrigation},
+                {'title': "Annulla", 'action': dismissMessage},
+            ]
+        })
+    }
+
+    const confirmIrrigation = () => {
+        let selector = document.getElementById('water_selector') as HTMLInputElement | null;
+        if (selector) {
+            let selectedWaterQuantity = selector.value;
+            requestWatering(selectedWaterQuantity)
+                .then((result) => {
+                console.log(result)
+            })
+        } else {
+            console.error("Cannot find the water selector");
+        }
+
+    }
+
+    const requestWatering = (quantity: string) => {
+        console.log("Innaffio la pianta: " + info.plant_id + " con ml: " + quantity);
+
+        return fetch(be_url+'/add/water/' + info.plant_id.toString(),
+            {
+                headers: {
+                    'Accept': 'application/json;charset=UTF-8',
+                    'Content-Type': 'application/json'
+                },
+                method: "POST",
+                body: JSON.stringify({quantity: quantity})
+            })
+            .then((response) => {
+                return response.json()
+            });
+    }
+
+    const dismissMessage = () => {
+        console.log("Dismiss");
+        updateConfirmationStatus({});
+    }
+
     return <div className={"tile"}>
         <span className={"title_line"}>
             <span className={"plant_name_txt"}>{info.plant_name}</span>
@@ -66,7 +119,10 @@ export const Tile: React.FC<TileProps> = ({ info }) => {
                 <span>{"Sensor_#" + info.nodemcu_id}</span>
             </span>
         </div>
-        <div className={"plant_button"}></div>
+        <div className={"plant_buttons"}>
+            <button className={"plant_button"} onClick={handleOpenPopup}>Innaffia</button>
+            <WateringPopup status={confirmationStatus} setStatus={updateConfirmationStatus}/>
+        </div>
     </div>;
 };
 

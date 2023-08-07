@@ -6,3 +6,4 @@ export function TitleBar() {
         <span className={'main_title'}>SeriGarden</span>
     </div>
 }
+

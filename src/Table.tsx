@@ -45,7 +45,7 @@ function updateReportInfo(plants: Array<Plant>, setReports: React.Dispatch<React
     console.log("Plants fetched");
     console.debug(plants);
     setReports(plants);
-    window.localStorage.setItem('reports', JSON.stringify(plants));
+    window.localStorage.setItem('plants', JSON.stringify(plants));
     setNotificationMessageInfo({});
 }
 
@@ -90,9 +90,9 @@ export function Table() {
     if (lines.length === 0) {
         lines.push(
             <div className={'nothing_found'} key={'None'}>
-                <img src={'search.svg'} alt={'Nessun risultato'}/>
-                <span>Non ho trovato niente</span>
-                <span className={'nothing_suggest'}>Prova a rimuovere qualche filtro</span>
+                <img src={'red_dot.svg'} alt={'Nessun risultato'}/>
+                <span>Non riesco a connettermi</span>
+                <span className={'nothing_suggest'}>Necessaria WiFi o VPN</span>
             </div>)
     } else {
         //console.log("ci sono " + lines.length + " linee")

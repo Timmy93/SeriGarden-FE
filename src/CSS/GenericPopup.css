@@ -1,0 +1,98 @@
+.download_message_div {
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin: auto auto;
+    z-index: 50;
+    width: 100%;
+    text-align: center;
+    height: 100%;
+    background: #577d61cc;
+}
+
+.download_group {
+    background: #e9e9ed;
+    text-align: center;
+    margin: 25px 30%;
+    display: block;
+    border: 0 solid #e9e9ed;
+    border-radius: 40px;
+    padding: 20px;
+    box-shadow: 4px 4px #d2d2d2;
+}
+
+.download_group > * {
+    font-size: 28px;
+    color: #545455;
+    margin: auto auto;
+    width: 100%;
+    display: block;
+}
+
+.download_group > img {
+    height: 150px;
+    margin: 50px auto;
+    display: block;
+}
+
+.download_group > .close_message {
+    text-align: right;
+    display: flex;
+}
+
+.download_group > .close_message > img {
+    /*! background: #57aa60; */
+    color: black;
+    border-radius: 3px;
+    padding: 5px;
+    margin-left: auto;
+    cursor: pointer;
+    height: 25px;
+}
+
+.download_group > .close_message > img:hover {
+
+}
+
+
+
+.download_sub_message {
+    font-size: 18px;
+    margin: 15px 0;
+}
+
+/*Confirm and dismiss buttons*/
+div.button_section {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+}
+
+.confirm_button, .plant_button {
+    padding: 8px;
+    border-radius: 3px;
+    font-size: 18px;
+    border: 0;
+}
+
+.confirm_button {
+    background-color: #d2d2d2;
+    color: #860000;
+}
+
+.plant_button {
+    background-color: #d2d2d2;
+    color: #3e6cc2;
+}
+
+.confirm_button:hover {
+    background-color: #57aa60;
+    color: black;
+    cursor: pointer;
+}
+
+.plant_button:hover {
+    background-color: #5185ff;
+    color: #fff;
+    cursor: pointer;
+}
