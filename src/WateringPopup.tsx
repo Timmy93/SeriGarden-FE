@@ -1,15 +1,17 @@
 import './CSS/GenericPopup.css';
 import React, { useState } from 'react';
 
-type WateringPopupProps = {
-    status: WateringPopupStatus;
-    setStatus: React.Dispatch<React.SetStateAction<WateringPopupStatus>>;
+export type PopupProps = {
+    status: PopupStatus;
+    setStatus: React.Dispatch<React.SetStateAction<PopupStatus>>;
+    plant_id: number;
 }
 
-export type WateringPopupStatus = {
+export type PopupStatus = {
     msg?: string;
     img?: string;
     sub_msg?: string;
+    is_chart?: boolean;
     buttons?: ButtonDescription[];
 }
 
@@ -18,21 +20,21 @@ export type ButtonDescription = {
     action: any;
 }
 
-export const WateringPopup: React.FC<WateringPopupProps> = ({status, setStatus}) => {
+export const WateringPopup: React.FC<PopupProps> = ({status, setStatus}) => {
     const [waterQuantity, updateWaterQuantity] = useState<number>(150)
 
     const onChange = (e: React.FormEvent<HTMLInputElement>) => {
         updateWaterQuantity(parseInt(e.currentTarget.value));
     }
 
-    if (status.hasOwnProperty('msg')) {
+    if (status.hasOwnProperty('msg') && !status.is_chart) {
         return <div className={'download_message_div'}
                     onClick={(e) => setStatus({})}
         >
             <div className={'download_group'} onClick={(e) => e.stopPropagation()}>
-                        <span className={'close_message'}>
-                            <img src={'red_dot.svg'} alt={"Close button"} onClick={(e) => setStatus({})}/>
-                        </span>
+                    <span className={'close_message'}>
+                        <img src={'red_dot.svg'} alt={"Close button"} onClick={(e) => setStatus({})}/>
+                    </span>
                 <span className={'download_message'}>{status.msg}</span>
                 <img src={status.img} alt={status.img}></img>
                 <span className={'download_sub_message'}>Versare {waterQuantity} ml di acqua?</span>
@@ -48,7 +50,7 @@ export const WateringPopup: React.FC<WateringPopupProps> = ({status, setStatus})
     return <></>
 };
 
-function generateButtons(buttons?: ButtonDescription[]) {
+export function generateButtons(buttons?: ButtonDescription[]) {
     if (!buttons) {
         buttons = []
     }

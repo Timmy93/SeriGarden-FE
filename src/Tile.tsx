@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { Plant } from './Table';
-import {WateringPopup, WateringPopupStatus} from "./WateringPopup";
+import {WateringPopup, PopupStatus} from "./WateringPopup";
+import {ChartPopup} from "./ChartPopup";
 import {be_url} from "./index";
 
 type TileProps = {
@@ -39,17 +40,26 @@ type status = {
 
 export const Tile: React.FC<TileProps> = ({ info }) => {
     //The confirmation popup status
-    const [confirmationStatus, updateConfirmationStatus] = useState<WateringPopupStatus>({})
-
+    const [confirmationStatus, updateConfirmationStatus] = useState<PopupStatus>({})
     let status = analyseStatus(info.plant_hum, info.detection_ts)
 
-    function handleOpenPopup() {
+    function handleOpenWateringPopup() {
         updateConfirmationStatus({
             'msg': "Irrigazione",
             'img': "watering_can.svg",
+            'is_chart': false,
             'buttons': [
                 {'title': "OK", 'action': confirmIrrigation},
                 {'title': "Annulla", 'action': dismissMessage},
+            ]
+        })
+    }
+    function handleOpenGraphicPopup() {
+        updateConfirmationStatus({
+            'msg': "Riepilogo irrigazione " + info.plant_name,
+            'is_chart': true,
+            'buttons': [
+                {'title': "Esci", 'action': dismissMessage}
             ]
         })
     }
@@ -97,7 +107,7 @@ export const Tile: React.FC<TileProps> = ({ info }) => {
         updateConfirmationStatus({});
     }
 
-    return <div className={"tile"}>
+    return <div className={"tile"} data-plantid={info.plant_id}>
         <span className={"title_line"}>
             <span className={"plant_name_txt"}>{info.plant_name}</span>
             <span className={"plant_type_txt"}>({info.plant_type})</span>
@@ -127,8 +137,10 @@ export const Tile: React.FC<TileProps> = ({ info }) => {
             </span>
         </div>
         <div className={"plant_buttons"}>
-            <button className={"plant_button"} onClick={handleOpenPopup}>Innaffia</button>
-            <WateringPopup status={confirmationStatus} setStatus={updateConfirmationStatus}/>
+            <button className={"plant_button"} onClick={handleOpenWateringPopup}>Innaffia</button>
+            <button className={"plant_button"} onClick={handleOpenGraphicPopup}>Statistiche</button>
+            <WateringPopup plant_id={info.plant_id} status={confirmationStatus} setStatus={updateConfirmationStatus}/>
+            <ChartPopup plant_id={info.plant_id} status={confirmationStatus} setStatus={updateConfirmationStatus}/>
         </div>
     </div>;
 };

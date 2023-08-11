@@ -96,3 +96,8 @@ div.button_section {
     color: #fff;
     cursor: pointer;
 }
+
+.download_group.chart {
+    margin: 1%;
+    border-radius: 15px;
+}
