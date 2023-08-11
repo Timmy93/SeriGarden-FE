@@ -85,6 +85,12 @@ div.button_section {
     color: #3e6cc2;
 }
 
+.plant_buttons {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
 .confirm_button:hover {
     background-color: #57aa60;
     color: black;

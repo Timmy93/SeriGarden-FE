@@ -39,7 +39,7 @@ export const ChartPopup: React.FC<PopupProps> = ({plant_id, status, setStatus}) 
 
     useEffect(() => {
         function getCharData() {
-            fetch(be_url + '/statistic/daily/' + plant_id)
+            fetch(be_url + '/statistic/weekly/' + plant_id)
                 .then((response) => {
                     return response.json()
                 })
