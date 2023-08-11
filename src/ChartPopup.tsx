@@ -44,9 +44,8 @@ export const ChartPopup: React.FC<PopupProps> = ({plant_id, status, setStatus}) 
                     return response.json()
                 })
                 .then((result) => {
-                    console.log("Parsing values")
+                    console.log(result)
                     let parsed = parseStatisticsData(result)
-                    console.log("Updating values")
                     updatechartInfo(parsed)
                 });
         }
@@ -58,7 +57,7 @@ export const ChartPopup: React.FC<PopupProps> = ({plant_id, status, setStatus}) 
                 let dt = new Date(receivedDatum['Date']);
                 let label = "Ore " + receivedDatum['Hour']
                 if (dt.toDateString()  !== (new Date()).toDateString() ) {
-                    label = label + " (" + dt.getDay().toString().padStart(2, '0') + "/"+dt.getMonth().toString().padStart(2, '0')+")"
+                    label = label + " (" + dt.getDate().toString().padStart(2, '0') + "/"+(dt.getMonth()+1).toString().padStart(2, '0')+")"
                 }
                 result.labels.push(label)
                 result.data.push(val)
