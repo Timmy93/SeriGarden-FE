@@ -68,14 +68,23 @@ export const ChartPopup: React.FC<PopupProps> = ({plant_id, status, setStatus}) 
         getCharData();
     }, [plant_id]);
 
-
+    function updateCss() {
+        let curWidth = document.documentElement.scrollWidth;
+        console.log(curWidth)
+        return {
+            height: ((curWidth*0.8)/2+80)+"px",
+            width: (curWidth*0.8)+"px",
+            marginLeft: "auto",
+            marginRight: "auto"
+        }
+    }
 
     if (status.hasOwnProperty('msg') && status.is_chart) {
-        //getCharData()
+        let style = updateCss()
         return <div className={'download_message_div'}
                     onClick={(e) => setStatus({})}
         >
-            <div className={'download_group chart'} onClick={(e) => e.stopPropagation()}>
+            <div style={style} className={'download_group chart'} onClick={(e) => e.stopPropagation()}>
                     <span className={'close_message'}>
                         <img src={'red_dot.svg'} alt={"Close button"} onClick={(e) => setStatus({})}/>
                     </span>
