@@ -78,16 +78,23 @@ export function Table() {
 
     //console.log(info)
     const lines = [];
+    const bleachers = [];
     //Apply update
     let tempList = plants;
     console.log("Showing "+tempList.length+ " elements")
     //Create lines
     for (const infoElement of tempList) {
-        lines.push(
-            <Tile key={infoElement['plant_id']} info={infoElement}/>
-        )
+        if (infoElement.nodemcu_id == null) {
+            bleachers.push(
+                <Tile key={infoElement['plant_id']} info={infoElement}/>
+            )
+        } else {
+            lines.push(
+                <Tile key={infoElement['plant_id']} info={infoElement}/>
+            )
+        }
     }
-    if (lines.length === 0) {
+    if (lines.length + bleachers.length === 0) {
         lines.push(
             <div className={'nothing_found'} key={'None'}>
                 <img src={'red_dot.svg'} alt={'Nessun risultato'}/>
@@ -105,8 +112,13 @@ export function Table() {
                 setInfo={setPlants}
                 setNotification={setNotificationMessageInfo}
             />
+            <h1 className={"title"}>Le mie piante</h1>
             <div className={"tile_container"}>
                 {lines}
+            </div>
+            <h1 className={"title"}>Vecchie piante</h1>
+            <div className={"bleachers_container"}>
+                {bleachers}
             </div>
         </div>
     );

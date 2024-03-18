@@ -1,5 +1,9 @@
 /* Style for the container div */
-.tile_container {
+h1.title {
+    text-align: center;
+}
+
+.tile_container, .bleachers_container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(150px, 400px));
     gap: 30px; /* Adjust the gap between boxes as needed */
