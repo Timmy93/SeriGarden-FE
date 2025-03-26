@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { Plant } from './Table';
 import {WateringPopup, PopupStatus} from "./WateringPopup";
 import {ChartPopup} from "./ChartPopup";
-import {be_url} from "./index";
+import {be_url} from "./main";
 
 type TileProps = {
     info: Plant;

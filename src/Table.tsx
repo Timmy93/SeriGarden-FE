@@ -1,7 +1,7 @@
 import './CSS/Table.css'
 
 import React, {useEffect, useState} from "react";
-import {be_url} from "./index";
+import {be_url} from "./main";
 import {NotificationMessage} from "./NotificationMessage";
 import {Tile} from "./Tile";
 

@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {be_url} from "./index";
+import {be_url} from "./main";
 import LineChart from "./LineChart";
 import {generateButtons, PopupProps} from "./WateringPopup";
 

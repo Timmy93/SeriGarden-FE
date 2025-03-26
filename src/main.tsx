@@ -15,8 +15,8 @@ root.render(
 );
 
 function createUrl() {
-    let port = process.env.REACT_APP_BE_PORT;
-    let domain = process.env.REACT_APP_BE_SERVER;
+    let port = import.meta.env.VITE_BE_PORT;
+    let domain = import.meta.env.VITE_BE_SERVER;
     if (port === '443') {
         return 'https://' + domain;
     } else {
