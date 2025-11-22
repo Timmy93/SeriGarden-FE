@@ -14,7 +14,7 @@
   "devDependencies": {
     "@types/react-dom": "^19.0.4",
     "@vitejs/plugin-react": "^4.3.4",
-    "vite": "^7.1.9"
+    "vite": "^7.2.4"
   },
   "dependencies": {
     "chart.js": "^4.4.8",
